@@ -1,7 +1,5 @@
 # createicns
 
-## Use
-
 This is a generator for the Apple Icon Image Format (.icns) which reads PNGs
 without changing them.
 
