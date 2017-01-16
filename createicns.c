@@ -43,10 +43,12 @@
 
 #include <arpa/inet.h>
 #include <dirent.h>
+#include <libgen.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/param.h>
 
 // Magic values for headers were found at
 // https://en.wikipedia.org/wiki/Apple_Icon_Image_format.
@@ -105,22 +107,25 @@ bool WriteUint32(uint32_t to_write, FILE* file) {
 }
 
 FILE* OpenIcnsFileForIconset(const char* iconset_path) {
-  const size_t iconset_path_length = strlen(iconset_path);
-  const size_t extension_length = sizeof(kIconsetExtension) - 1;
-  const size_t base_path_length = iconset_path_length - extension_length;
+  char path[MAXPATHLEN];
+  if (!basename_r(iconset_path, path)) {
+    PrintSystemError();
+    return NULL;
+  }
 
-  if (iconset_path_length <= extension_length ||
-      strncmp(iconset_path + base_path_length, kIconsetExtension,
-              extension_length) != 0) {
+  const size_t path_length = strlen(path);
+  const size_t extension_length = sizeof(kIconsetExtension) - 1;
+  const size_t base_path_length = path_length - extension_length;
+
+  if (path_length <= extension_length ||
+      strncmp(path + base_path_length, kIconsetExtension, extension_length) !=
+          0) {
     PrintError("Need .iconset directory as input.");
     return NULL;
   }
 
-  char* path = strdup(iconset_path);
   memcpy(path + base_path_length, kIcnsExtension, sizeof(kIcnsExtension));
-
   FILE* file = fopen(path, "w");
-  free(path);
   if (!file) {
     PrintSystemError();
     return NULL;
