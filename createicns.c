@@ -73,10 +73,6 @@ struct {
     {"icon_512x512@2x.png", 'ic10'}
 };
 
-typedef struct {
-  const char* iconset_path;
-} Input;
-
 void PrintError(const char* error) {
   fprintf(stderr, "Error: %s\n", error);
 }
@@ -89,21 +85,18 @@ void PrintUsage(const char* own_path) {
   fprintf(stderr, "Usage: %s [iconset]\n", own_path);
 }
 
-Input InputFromArguments(int argc, char* argv[]) {
-  Input input = {0};
-
+const char* IconsetFromArguments(int argc, char* argv[]) {
   if (argc < 2) {
     PrintError("No path given to iconset directory.");
     PrintUsage(argv[0]);
-    return input;
+    return NULL;
   } else if (argc > 2) {
     PrintError("Too many arguments.");
     PrintUsage(argv[0]);
-    return input;
+    return NULL;
   }
 
-  input.iconset_path = argv[1];
-  return input;
+  return argv[1];
 }
 
 bool WriteUint32(uint32_t to_write, FILE* file) {
@@ -252,11 +245,11 @@ bool CreateIcnsFromIconset(const char* iconset_path) {
 }
 
 int main(int argc, char* argv[]) {
-  Input input = InputFromArguments(argc, argv);
-  if (!input.iconset_path)
+  const char* iconset_path = IconsetFromArguments(argc, argv);
+  if (!iconset_path)
     return -1;
 
-  if (!CreateIcnsFromIconset(input.iconset_path))
+  if (!CreateIcnsFromIconset(iconset_path))
     return -1;
 
   return 0;
