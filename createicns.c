@@ -87,6 +87,26 @@ void PrintUsage(const char* own_path) {
   fprintf(stderr, "Usage: %s [iconset]\n", own_path);
 }
 
+char* Basename(const char* path, char* basename) {
+  if (!path || *path == '\0') {
+    strlcpy(basename, ".", sizeof("."));
+    return basename;
+  }
+
+  size_t length = strlen(path);
+  const char* end;
+  for (end = path + length - 1; end > path && *end == '/'; end--) {}
+  const char* begin;
+  for (begin = end; begin - 1 > path && *(begin - 1) != '/'; begin--) {}
+
+  size_t base_length = (end - begin) + 1;
+  if (base_length >= MAXPATHLEN)
+    return NULL;
+
+  strlcpy(basename, begin, base_length + 1);
+  return basename;
+}
+
 const char* IconsetFromArguments(int argc, char* argv[]) {
   if (argc < 2) {
     PrintError("No path given to iconset directory.");
@@ -108,8 +128,8 @@ bool WriteUint32(uint32_t to_write, FILE* file) {
 
 FILE* OpenIcnsFileForIconset(const char* iconset_path) {
   char path[MAXPATHLEN];
-  if (!basename_r(iconset_path, path)) {
-    PrintSystemError();
+  if (!Basename(iconset_path, path)) {
+    PrintError("Can't determine basename for iconset");
     return NULL;
   }
 
