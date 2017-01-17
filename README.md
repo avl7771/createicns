@@ -71,5 +71,5 @@ total 408
 ```
 * Run `createicns` to get them back into `icons.icns`
    * `$ createicns icons.iconset`
-   * Open `icons.iconset` using `Preview.app` to make sure the icons are
+   * Open `icons.icns` using `Preview.app` to make sure the icons are
      there and look OK.
