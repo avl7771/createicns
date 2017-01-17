@@ -9,6 +9,8 @@ The input is a .iconset directory with files conforming to the naming scheme
 for .iconset directories. It reads a 'complete' set of PNG icons as described
 here:
 <https://developer.apple.com/library/content/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Optimizing/Optimizing.html>
+Not all icons in the list have to be present, but only icons with names from
+the list are processed by `createicns`.
 
 To generate a .iconset directory from an existing x.icns file, use
 `iconutil -c iconset x.icns`
