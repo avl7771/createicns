@@ -58,16 +58,16 @@ total 1224
 ```
 $ ls -l icons.iconset
 total 408
--rw-r--r--  1 arjanl  staff   6355 Jan 17 09:25 icon_128x128.png
--rw-r--r--  1 arjanl  staff  13901 Jan 17 09:25 icon_128x128@2x.png
--rw-r--r--  1 arjanl  staff    835 Jan 17 09:25 icon_16x16.png
--rw-r--r--  1 arjanl  staff   1782 Jan 17 09:25 icon_16x16@2x.png
--rw-r--r--  1 arjanl  staff  13901 Jan 17 09:25 icon_256x256.png
--rw-r--r--  1 arjanl  staff  31002 Jan 17 09:25 icon_256x256@2x.png
--rw-r--r--  1 arjanl  staff   1782 Jan 17 09:25 icon_32x32.png
--rw-r--r--  1 arjanl  staff   3030 Jan 17 09:25 icon_32x32@2x.png
--rw-r--r--  1 arjanl  staff  31002 Jan 17 09:25 icon_512x512.png
--rw-r--r--  1 arjanl  staff  82188 Jan 17 09:25 icon_512x512@2x.png
+-rw-r--r--  1 user01  staff   6355 Jan 17 09:25 icon_128x128.png
+-rw-r--r--  1 user01  staff  13901 Jan 17 09:25 icon_128x128@2x.png
+-rw-r--r--  1 user01  staff    835 Jan 17 09:25 icon_16x16.png
+-rw-r--r--  1 user01  staff   1782 Jan 17 09:25 icon_16x16@2x.png
+-rw-r--r--  1 user01  staff  13901 Jan 17 09:25 icon_256x256.png
+-rw-r--r--  1 user01  staff  31002 Jan 17 09:25 icon_256x256@2x.png
+-rw-r--r--  1 user01  staff   1782 Jan 17 09:25 icon_32x32.png
+-rw-r--r--  1 user01  staff   3030 Jan 17 09:25 icon_32x32@2x.png
+-rw-r--r--  1 user01  staff  31002 Jan 17 09:25 icon_512x512.png
+-rw-r--r--  1 user01  staff  82188 Jan 17 09:25 icon_512x512@2x.png
 ```
 * Run `createicns` to get them back into `icons.icns`
    * `$ createicns icons.iconset`
