@@ -34,7 +34,7 @@ Here's an example of optimizing an iconset using `pngquant`, which you
 can find at <https://pngquant.org> (lines starting with '$' are commands
 to enter):
 
-1. Our existing icon set is stored in `icons.icns`. Let's extract it.
+* Our existing icon set is stored in `icons.icns`. Let's extract it.
   * `$ iconutil -c iconset icons.icns`
   * You should now have a folder `icons.iconset` whose contents look like this:
 ```
@@ -51,7 +51,7 @@ total 1224
 -rw-r--r--  1 user01  staff   99938 Jan 17 09:21 icon_512x512.png
 -rw-r--r--  1 user01  staff  292329 Jan 17 09:21 icon_512x512@2x.png
 ```
-2. Optimize the PNGs using `pngquant`
+* Optimize the PNGs using `pngquant`
   * `$ cd icons.iconset`
   * `$ pngquant --ext .png --force *`
   * The contents of the folder should now have smaller files:
@@ -69,8 +69,7 @@ total 408
 -rw-r--r--  1 arjanl  staff  31002 Jan 17 09:25 icon_512x512.png
 -rw-r--r--  1 arjanl  staff  82188 Jan 17 09:25 icon_512x512@2x.png
 ```
-  * Check if you are happy with the optimized icons.
-3. Run `createicns` to get them back into `icons.icns`
+* Run `createicns` to get them back into `icons.icns`
    * `$ createicns icons.iconset`
    * Open `icons.iconset` using `Preview.app` to make sure the icons are
      there and look OK.
