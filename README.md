@@ -15,7 +15,7 @@ the list are processed by `createicns`.
 To generate a .iconset directory from an existing x.icns file, use
 `iconutil -c iconset x.icns`
 
-This tool is similar to running `iconutil -c icns x.iconset`, except it
+`createicns` is similar to running `iconutil -c icns x.iconset`, except it
 doesn't change the PNG images in any way.
 
 ## Installation
