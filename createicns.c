@@ -97,7 +97,7 @@ char* Basename(const char* path, char* basename) {
   const char* end;
   for (end = path + length - 1; end > path && *end == '/'; end--) {}
   const char* begin;
-  for (begin = end; begin - 1 > path && *(begin - 1) != '/'; begin--) {}
+  for (begin = end; begin > path && *(begin - 1) != '/'; begin--) {}
 
   size_t base_length = (end - begin) + 1;
   if (base_length >= MAXPATHLEN)
