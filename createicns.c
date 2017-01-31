@@ -56,6 +56,7 @@
 enum kBufferSize { kBufferSize = 1024 };
 static const char kIconsetExtension[] = ".iconset";
 static const char kIcnsExtension[] = ".icns";
+static const char kUnknownFormatFilename[] = "icon_data_";
 static const uint32_t kMagicHeader = 'icns';
 
 struct {
@@ -165,6 +166,15 @@ FILE* OpenIcnsFileForIconset(const char* iconset_path) {
 }
 
 uint32_t FindIconType(const char* icon_filename) {
+  if (strncmp(icon_filename, kUnknownFormatFilename,
+              sizeof(kUnknownFormatFilename) - 1) == 0) {
+    const char* format = icon_filename + sizeof(kUnknownFormatFilename) - 1;
+    if (strlen(format) != 4)
+      return 0;
+
+    return (format[0] << 24) | (format[1] << 16) | (format[2] << 8) | format[3];
+  }
+
   for (size_t i = 0; i < (sizeof(kIconTypes) / sizeof(*kIconTypes)); i++) {
     if (strcmp(kIconTypes[i].icon_filename, icon_filename) == 0)
       return kIconTypes[i].icon_type;
