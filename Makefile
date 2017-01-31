@@ -1,5 +1,7 @@
 createicns: createicns.c
 
+readicns: readicns.c
+
 .PHONY: clean
 clean:
-	-rm createicns $(objects)
+	-rm -f createicns readicns $(objects)
