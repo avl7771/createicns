@@ -13,14 +13,15 @@ Not all icons in the list have to be present, but only icons with names from
 the list are processed by `createicns`.
 
 To generate a .iconset directory from an existing x.icns file, use
-`iconutil -c iconset x.icns`
+`readicns x.icns`
 
 `createicns` is similar to running `iconutil -c icns x.iconset`, except it
 doesn't change the PNG images in any way.
 
 ## Installation
 
-`createicns` has only been tested on macOS. Use `make` to compile it.
+`createicns` and `readicns` have only been tested on macOS. Use
+`make createicns` and `make readicns` to compile them.
 
 ## Optimizing an icon set
 
@@ -37,21 +38,23 @@ can find at <https://pngquant.org> (lines starting with '$' are commands
 to enter):
 
 * Our existing icon set is stored in `icons.icns`. Let's extract it.
-  * `$ iconutil -c iconset icons.icns`
+  * `$ readicns icons.icns`
   * You should now have a folder `icons.iconset` whose contents look like this:
 ```
 $ ls -l icons.iconset
 total 1224
 -rw-r--r--  1 user01  staff   15903 Jan 17 09:21 icon_128x128.png
 -rw-r--r--  1 user01  staff   41182 Jan 17 09:21 icon_128x128@2x.png
--rw-r--r--  1 user01  staff     764 Jan 17 09:21 icon_16x16.png
 -rw-r--r--  1 user01  staff    2462 Jan 17 09:21 icon_16x16@2x.png
 -rw-r--r--  1 user01  staff   41182 Jan 17 09:21 icon_256x256.png
 -rw-r--r--  1 user01  staff   99938 Jan 17 09:21 icon_256x256@2x.png
--rw-r--r--  1 user01  staff    2462 Jan 17 09:21 icon_32x32.png
 -rw-r--r--  1 user01  staff    6070 Jan 17 09:21 icon_32x32@2x.png
 -rw-r--r--  1 user01  staff   99938 Jan 17 09:21 icon_512x512.png
 -rw-r--r--  1 user01  staff  292329 Jan 17 09:21 icon_512x512@2x.png
+-rw-r--r--  1 user01  staff    1826 Jan 17 14:11 icon_data_il32
+-rw-r--r--  1 user01  staff     579 Jan 17 14:11 icon_data_is32
+-rw-r--r--  1 user01  staff    1024 Jan 17 14:11 icon_data_l8mk
+-rw-r--r--  1 user01  staff     256 Jan 17 14:11 icon_data_s8mk
 ```
 * Optimize the PNGs using `pngquant`
   * `$ cd icons.iconset`
@@ -62,14 +65,16 @@ $ ls -l icons.iconset
 total 408
 -rw-r--r--  1 user01  staff   6355 Jan 17 09:25 icon_128x128.png
 -rw-r--r--  1 user01  staff  13901 Jan 17 09:25 icon_128x128@2x.png
--rw-r--r--  1 user01  staff    835 Jan 17 09:25 icon_16x16.png
 -rw-r--r--  1 user01  staff   1782 Jan 17 09:25 icon_16x16@2x.png
 -rw-r--r--  1 user01  staff  13901 Jan 17 09:25 icon_256x256.png
 -rw-r--r--  1 user01  staff  31002 Jan 17 09:25 icon_256x256@2x.png
--rw-r--r--  1 user01  staff   1782 Jan 17 09:25 icon_32x32.png
 -rw-r--r--  1 user01  staff   3030 Jan 17 09:25 icon_32x32@2x.png
 -rw-r--r--  1 user01  staff  31002 Jan 17 09:25 icon_512x512.png
 -rw-r--r--  1 user01  staff  82188 Jan 17 09:25 icon_512x512@2x.png
+-rw-r--r--  1 user01  staff   1826 Jan 17 14:11 icon_data_il32
+-rw-r--r--  1 user01  staff    579 Jan 17 14:11 icon_data_is32
+-rw-r--r--  1 user01  staff   1024 Jan 17 14:11 icon_data_l8mk
+-rw-r--r--  1 user01  staff    256 Jan 17 14:11 icon_data_s8mk
 ```
 * Run `createicns` to get them back into `icons.icns`
    * `$ createicns icons.iconset`
