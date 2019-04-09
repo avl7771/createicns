@@ -52,7 +52,7 @@ static const char kIcnsExtension[] = ".icns";
 static const char kUnknownFormatFilename[] = "icon_data_";
 static const uint32_t kMagicHeader = 'icns';
 
-static uint8_t kJp2Magic[] = {
+static const uint8_t kJp2Magic[] = {
   0x00, 0x00, 0x00, 0x0C, 0x6A, 0x50, 0x20, 0x20, 0x0D, 0x0A, 0x87, 0x0A
 };
 
