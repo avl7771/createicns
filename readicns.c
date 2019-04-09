@@ -52,6 +52,10 @@ static const char kIcnsExtension[] = ".icns";
 static const char kUnknownFormatFilename[] = "icon_data_";
 static const uint32_t kMagicHeader = 'icns';
 
+static uint8_t kJp2Magic[] = {
+  0x00, 0x00, 0x00, 0x0C, 0x6A, 0x50, 0x20, 0x20, 0x0D, 0x0A, 0x87, 0x0A
+};
+
 typedef struct {
   char path[MAXPATHLEN];
 } Path;
@@ -218,6 +222,8 @@ bool CopyIconToIconset(FILE* icns, Path iconset_path) {
     return false;
   }
 
+  int is_jp2 = -1;
+
   uint8_t buffer[kBufferSize];
   while (size > 0) {
     size_t to_read = size > kBufferSize ? kBufferSize : size;
@@ -227,10 +233,18 @@ bool CopyIconToIconset(FILE* icns, Path iconset_path) {
       fclose(target);
       return false;
     }
+    if (is_jp2 == -1) {
+      is_jp2 = !memcmp(buffer, kJp2Magic, sizeof(kJp2Magic));
+    }
     size -= to_read;
   }
 
   fclose(target);
+  if (is_jp2) {
+    Path orig_path = iconset_path;
+    strcpy(iconset_path.path + strlen(iconset_path.path) - 3, "jp2");
+    rename(orig_path.path, iconset_path.path);
+  }
   return true;
 }
 
