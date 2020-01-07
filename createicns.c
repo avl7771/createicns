@@ -63,16 +63,27 @@ struct {
   const char* icon_filename;
   uint32_t icon_type;
 } static const kIconTypes[] = {
+    {"icon_16x16.jp2", 'icp4'},
     {"icon_16x16.png", 'icp4'},
+    {"icon_16x16@2x.jp2", 'ic11'},
     {"icon_16x16@2x.png", 'ic11'},
+    {"icon_32x32.jp2", 'icp5'},
     {"icon_32x32.png", 'icp5'},
+    {"icon_32x32@2x.jp2", 'ic12'},
     {"icon_32x32@2x.png", 'ic12'},
+    {"icon_64x64.jp2", 'icp6'},
     {"icon_64x64.png", 'icp6'},
+    {"icon_128x128.jp2", 'ic07'},
     {"icon_128x128.png", 'ic07'},
+    {"icon_128x128@2x.jp2", 'ic13'},
     {"icon_128x128@2x.png", 'ic13'},
+    {"icon_256x256.jp2", 'ic08'},
     {"icon_256x256.png", 'ic08'},
+    {"icon_256x256@2x.jp2", 'ic14'},
     {"icon_256x256@2x.png", 'ic14'},
+    {"icon_512x512.jp2", 'ic09'},
     {"icon_512x512.png", 'ic09'},
+    {"icon_512x512@2x.jp2", 'ic10'},
     {"icon_512x512@2x.png", 'ic10'}
 };
 
